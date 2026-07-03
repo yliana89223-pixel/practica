@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>История запросов</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .history-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #eef4f8;
+        }
+        th {
+            background: #f8fcff;
+            font-weight: 600;
+            color: #0b2b40;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #1a5a7a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .empty {
+            text-align: center;
+            color: #8ba9be;
+            padding: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="history-container">
+        <h1>История запросов</h1>
+        <a href="/" class="back-link">← Назад к загрузке</a>
+        
+        {% if history %}
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Дата и время</th>
+                    <th>Файл</th>
+                    <th>Объектов</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in history %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td><strong>{{ row[3] }}</strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty"> Пока нет запросов. Загрузите фото для анализа!</div>
+        {% endif %}
+    </div>
+</body>
+</html>
